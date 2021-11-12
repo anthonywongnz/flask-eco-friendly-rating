@@ -1,13 +1,13 @@
-from alpine:latest
-RUN apk add --no-cache py3-pip \
-    && pip3 install --upgrade pip
+# syntax=docker/dockerfile:1
 
-WORKDIR /app
+FROM python:3.10-alpine
+
 COPY . /app
 
-RUN pip3 --no-cache-dir install -r requirements.txt
+WORKDIR /app
 
-EXPOSE 8080
+RUN pip3 install -r requirements.txt
 
-ENTRYPOINT ["python3"]
-CMD ["hello.py"]
+USER 1001
+EXPOSE 5000
+CMD [ "python3", "/app/app.py"]
