@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %} Home {% endblock %}
+
+{% block body %}
+<h2 style="text-align: center">Welcome to my cool app</h2>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+<table style="margin-left: auto; margin-right: auto;">
+    <tr>
+        <th>id</th>
+        <th>Store Name</th>
+        <th>Category</th>
+        <th>Packaging</th>
+        <th>City</th>
+        <th>Action</th>
+    </tr>
+    {%for store in all_stores%}
+        <tr>
+            <td>{{store['_id']}}</td>
+            <td>{{store['name']}}</td>
+            <td>{{store['category']}}</td>
+            <td>{{store['packaging']}}</td>
+            <td>{{store['city']}}</td>
+            <td>
+                <a href="/update/{{store._id}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{store._id}}">Edit</a>
+                <a href="./delete?_id={{ store._id }}"><button type="submit" class="btn btn-primary btn-xs" onclick="return confirm('Are You Sure To Delete ?')">Delete</button></a>
+                <!-- <a href="/delete/{{store._id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure To Delete ?')">Delete</a> -->
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+
+<form method ="post" action="/insert">
+    <button type="submit" class="btn btn-primary btn-xs" name="submit_a" value="submit_a"> Insert a test doc </button>
+</form> 
+
+
+<div>
+    <form action="{{url_for('insert')}}" method="POST">
+       <div>
+          <label>Store Name:</label>
+          <input type="text" name="name" required="1">
+       </div>
+        <div>
+          <label>Category:</label>
+          <input type="text" name="category" required="1">
+       </div>
+        <div>
+          <label>Packaging:</label>
+          <input type="text" name="packaging" required="1">
+       </div>
+       <div>
+        <label>City:</label>
+        <input type="text" name="city" required="1">
+     </div>
+       <div>
+          <button class="btn btn-primary" type="submit">Add Record</button>
+       </div>
+    </form>
+
+
+ </div>
+
+
+{% endblock %}
