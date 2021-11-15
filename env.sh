@@ -1,0 +1,1 @@
+{{ env: dev-aw-keys }} >/app/secrets.json

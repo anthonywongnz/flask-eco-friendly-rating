@@ -10,4 +10,4 @@ RUN pip3 install -r requirements.txt
 
 USER 1001
 EXPOSE 5000
-CMD [ "python3", "/app/run.py"]
+CMD [ "env.sh", "python3", "/app/run.py"]
