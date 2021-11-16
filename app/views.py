@@ -8,22 +8,18 @@ import json
 
 @app.route('/')
 def index():
-
-
     all_docs = get_docs()
-
     all_stores = []
-
-
     for id in all_docs:
         all_stores.append(id['doc'])
-
     return render_template('index.html', all_stores = all_stores)
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 @app.route('/insert', methods = ['POST'])
 def insert():
- 
     if request.method == 'POST':
         document = {
             "name" : request.form['name'],
@@ -33,23 +29,31 @@ def insert():
             "insert_datetime": str(datetime.datetime.now())
         }
 
-        print('document received')
-        print(document)
-
-        # document = {
-        #     "name" : "this is a test",
-        #     "category":"test",
-        #     "packaging" : "hello",
-        #     "city": "Hamilton",
-        #     "insert_datetime": str(datetime.datetime.now())
-        #     }
-
         post_doc(document)
  
         flash("Created new record successfully")
  
         return redirect(url_for('index'))
 
+
+@app.route('/update', methods = ['POST'])
+def update():
+    if request.method == 'POST':
+        document = {
+            "_id" : request.form['id'],
+            "_rev" : request.form['rev'],
+            "name" : request.form['name'],
+            "category": request.form['category'],
+            "packaging" : request.form['packaging'],
+            "city": request.form['city'],
+            "insert_datetime": str(datetime.datetime.now())
+        }
+
+        post_doc(document)
+ 
+        flash("Updated record successfully")
+ 
+        return redirect(url_for('index'))
 
 
 @app.route('/delete')

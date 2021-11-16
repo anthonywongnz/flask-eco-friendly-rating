@@ -29,9 +29,64 @@ test_doc = {
     "insert_datetime": datetime.datetime.now()
     }
 
-# post_response = client.post_document(db=DB_NAME, document=test_doc).get_result()
-# print(post_response)
+# # post_response = client.post_document(db=DB_NAME, document=test_doc).get_result()
+# # print(post_response)
+# # print()
+
+# # Get all documents
+# all_docs_result = client.post_all_docs(
+#   db=DB_NAME,
+#   include_docs=True,
+#   limit=10
+# ).get_result()
+
+# all_docs = all_docs_result['rows']
+
+# # print(all_docs)
+
+# for id in all_docs:
+#   print(id['doc'])
+#   # print(id['doc']['name'])
+
 # print()
+
+# # Delete document by id
+
+# example_doc_id = '701edff2f1a2916ea7a7efc08613b3f4'
+
+# get_document_response = client.get_document(
+#     db=DB_NAME,
+#     doc_id=example_doc_id
+# ).get_result()
+
+# print(get_document_response)
+
+# print()
+
+# # client.delete_document(db=DB_NAME, doc_id=example_doc_id)
+
+# try:
+#     document = client.get_document(
+#         db=DB_NAME,
+#         doc_id='701edff2f1a2916ea7a7efc08613b3f4'
+#     ).get_result()
+
+#     delete_document_response = client.delete_document(
+#         db=DB_NAME,
+#         doc_id=document["_id"],
+#         rev=document["_rev"]
+#     ).get_result()
+
+#     if delete_document_response["ok"]:
+#         print('You have deleted the document.')
+
+# except ApiException as ae:
+#     if ae.code == 404:
+#         print('Cannot delete document because either ' +
+#               f'"{DB_NAME}" database or "{example_doc_id}"' +
+#               'document was not found.')
+
+print()
 
 # Get all documents
 all_docs_result = client.post_all_docs(
@@ -42,46 +97,34 @@ all_docs_result = client.post_all_docs(
 
 all_docs = all_docs_result['rows']
 
-# print(all_docs)
-
-for id in all_docs:
-  print(id['doc'])
-  # print(id['doc']['name'])
+print(all_docs)
 
 print()
 
-# Delete document by id
 
-example_doc_id = '701edff2f1a2916ea7a7efc08613b3f4'
+# Modify document
 
-get_document_response = client.get_document(
-    db=DB_NAME,
-    doc_id=example_doc_id
+modify_doc = {
+    "_id": "69c52153f6bbca5399e928ffa094e1de",
+    "_rev": "2-02227c7254e7abd9b6806c2564600fcd",
+    "name" : "Moonbucks",
+    "category":"beverages",
+    "packaging" : "plastic",
+    "city": "Hamilton",
+    "insert_datetime": str(datetime.datetime.now())
+}
+
+post_response = client.post_document(db=DB_NAME, document=modify_doc).get_result()
+print(post_response)
+print()
+
+# Get all documents
+all_docs_result = client.post_all_docs(
+  db=DB_NAME,
+  include_docs=True,
+  limit=10
 ).get_result()
 
-print(get_document_response)
+all_docs = all_docs_result['rows']
 
-print()
-
-# client.delete_document(db=DB_NAME, doc_id=example_doc_id)
-
-try:
-    document = client.get_document(
-        db=DB_NAME,
-        doc_id='701edff2f1a2916ea7a7efc08613b3f4'
-    ).get_result()
-
-    delete_document_response = client.delete_document(
-        db=DB_NAME,
-        doc_id=document["_id"],
-        rev=document["_rev"]
-    ).get_result()
-
-    if delete_document_response["ok"]:
-        print('You have deleted the document.')
-
-except ApiException as ae:
-    if ae.code == 404:
-        print('Cannot delete document because either ' +
-              f'"{DB_NAME}" database or "{example_doc_id}"' +
-              'document was not found.')
+print(all_docs)
