@@ -1,0 +1,52 @@
+{
+  "data": [
+    {
+      "name": "Uptown Park Chinese Restaurant",
+      "category": "Asian",
+      "environmental_commitment": "We are one with the Pandas and using bamboo as cutlery.",
+      "operations": {
+        "delivery": "y",
+        "pickup": "n",
+        "dine_in": "y",
+        "dispose_practices": "recycle",
+        "website_link": "www.example.com"
+      },
+      "consumer_ratings": {
+        "family_friendly": "y",
+        "pet_friendly": "y",
+        "food_options": "Vegetarian",
+        "packaging": "Biodegradable Plastic",
+        "cutlery_takeaway": "Wood",
+        "cutlery_instore": "Wood",
+        "food_source": "Local"
+      },
+      "calculated_eco_score": 0,
+      "insert_datetime": "2021-11-16 23:51:14.823417",
+      "update_datetime": "2021-11-17 23:51:14.823417"
+    },
+    {
+      "name": "Chops Cafe",
+      "category": "Cafe",
+      "environmental_commitment": "none",
+      "operations": {
+        "delivery": "n",
+        "pickup": "n",
+        "dine_in": "y",
+        "dispose_practices": "recycle",
+        "website_link": "www.example.com"
+      },
+      "consumer_ratings": {
+        "family_friendly": "y",
+        "pet_friendly": "n",
+        "food_options": "Regular Meat",
+        "packaging": "Biodegradable Plastic",
+        "cutlery_takeaway": "Biodegradable Plastic",
+        "cutlery_instore": "Biodegradable Plastic",
+        "food_source": "Local"
+      },
+      "calculated_eco_score": 0,
+      "insert_datetime": "2021-11-16 23:51:14.823417",
+      "update_datetime": "2021-11-17 23:51:14.823417"
+    }
+  ]
+}

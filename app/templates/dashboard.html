@@ -26,9 +26,10 @@
         <!-- <th>rev</th> -->
         <th>Store Name</th>
         <th>Category</th>
-        <th>Packaging</th>
-        <th>City</th>
-        <th>Sussit Eco Rating</th>
+        <th>Environmental Commitment</th>
+        <th>Delivery</th>
+        <th>Pickup</th>
+        <th>Sussit Rating</th>
         <th>Action</th>
     </tr>
     {%for store in all_stores%}
@@ -37,9 +38,10 @@
             <!-- <td>{{store['_rev']}}</td> -->
             <td>{{store['name']}}</td>
             <td>{{store['category']}}</td>
-            <td>{{store['packaging']}}</td>
-            <td>{{store['city']}}</td>
-            <td>0/100</td>
+            <td>{{store['environmental_commitment']}}</td>
+            <td>{{store.operations.delivery}}</td>
+            <td>{{store.operations.pickup}}</td>
+            <td>{{store.calculated_eco_score}}</td>
             <td>
                 <a href="#modaledit{{store._id}}" class="btn btn-primary btn-xs" data-bs-toggle="modal">Edit</a>
                 <a href="./delete?_id={{ store._id }}"><button type="submit" class="btn btn-primary btn-xs" onclick="return confirm('Are You Sure To Delete ?')">Delete</button></a>
@@ -55,7 +57,7 @@
                 <div class="modal-body">
                    <form action="{{url_for('update')}}" method="POST">
                       <div class="form-group">
-                         <label>Name:</label>
+                         <label>Store Name:</label>
                           <input type="hidden"  name="id" value="{{store._id}}">
                           <input type="hidden"  name="rev" value="{{store._rev}}">
                          <input type="text" class="form-control" name="name" value="{{store.name}}">
@@ -65,12 +67,16 @@
                          <input type="text" class="form-control" name="category" value="{{store.category}}">
                       </div>
                       <div class="form-group">
-                         <label>Pacakging:</label>
-                         <input type="text" class="form-control" name="packaging" value="{{store.packaging}}">
+                         <label>Environmental Commitment:</label>
+                         <input type="text" class="form-control" name="environmental_commitment" value="{{store.environmental_commitment}}">
                       </div>
                       <div class="form-group">
-                        <label>City:</label>
-                        <input type="text" class="form-control" name="city" value="{{store.city}}">
+                        <label>Delivery:</label>
+                        <input type="text" class="form-control" name="delivery" value="{{store.operations.delivery}}">
+                     </div>
+                     <div class="form-group">
+                        <label>Pickup:</label>
+                        <input type="text" class="form-control" name="pickup" value="{{store.operations.pickup}}">
                      </div>
                       <div class="form-group">
                          <button class="btn btn-primary" type="submit">Update</button>
@@ -87,35 +93,39 @@
     {% endfor %}
 </table>
 
-<a href="#myModal" class="btn btn-lg btn-primary" data-bs-toggle="modal">Add new document</a>
+<a href="#myModal" class="btn btn-lg btn-primary" data-bs-toggle="modal">Add New Restaurant...</a>
 
 <div id="mymodal" class="modal fade" role="dialog">
   <div class="modal-dialog">
      <div class="modal-content">
         <div class="modal-header">
-           <h4 class="modal-title">Add Document</h4>
+           <h4 class="modal-title">Add Restaurant</h4>
         </div>
         <div class="modal-body">
            <form action="{{url_for('insert')}}" method="POST">
-              <div class="form-group">
+               <div class="form-group">
                  <label>Store Name:</label>
                  <input type="text" class="form-control" name="name" required="1">
-              </div>
+               </div>
                <div class="form-group">
                  <label>Category:</label>
                  <input type="text" class="form-control" name="category" required="1">
-              </div>
+               </div>
                <div class="form-group">
-                 <label>Packaging:</label>
-                 <input type="text" class="form-control" name="packaging" required="1">
-              </div>
-              <div>
-                <label>City:</label>
-                <input type="text" class="form-control" name="city" required="1">
-             </div>
-              <div class="form-group">
-                 <button class="btn btn-primary" type="submit">Add Record</button>
-              </div>
+                  <label>Environmental Commitment:</label>
+                  <input type="text" class="form-control" name="environmental_commitment" required="1">
+               </div>
+               <div class="form-group">
+                 <label>Delivery:</label>
+                 <input type="text" class="form-control" name="delivery" required="1">
+               </div>
+               <div>
+                 <label>Pickup:</label>
+                 <input type="text" class="form-control" name="pickup" required="1">
+               </div>
+               <div class="form-group">
+                 <button class="btn btn-primary" type="submit">Add Restaurant</button>
+               </div>
            </form>
         </div>
         <div class="modal-footer">

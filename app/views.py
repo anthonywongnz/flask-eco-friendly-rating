@@ -1,18 +1,13 @@
 from app import app
 from flask import render_template, request, flash, redirect, url_for
 from app.db import get_docs, post_doc, delete_doc
+from app.score import calculate_score
 
-# shift this to db logic?
 import datetime
-import json
 
 @app.route('/')
-def index():
-    all_docs = get_docs()
-    all_stores = []
-    for id in all_docs:
-        all_stores.append(id['doc'])
-    return render_template('index.html', all_stores = all_stores)
+def index():      
+    return render_template('index.html')
 
 @app.route('/dashboard')
 def dashboard():
@@ -36,9 +31,16 @@ def insert():
         document = {
             "name" : request.form['name'],
             "category": request.form['category'],
-            "packaging" : request.form['packaging'],
-            "city": request.form['city'],
-            "insert_datetime": str(datetime.datetime.now())
+            "environmental_commitment" : request.form['environmental_commitment'],
+            "operations" : 
+                {
+                    "delivery": request.form['delivery'],
+                    "pickup": request.form['pickup']
+                }
+            ,
+            "calculated_eco_score": calculate_score(request.form),
+            "insert_datetime": str(datetime.datetime.now()),
+            "update_datetime": str(datetime.datetime.now())
         }
 
         post_doc(document)
@@ -53,12 +55,17 @@ def update():
     if request.method == 'POST':
         document = {
             "_id" : request.form['id'],
-            "_rev" : request.form['rev'],
-            "name" : request.form['name'],
+            "_rev": request.form['rev'],
+            "name": request.form['name'],
             "category": request.form['category'],
-            "packaging" : request.form['packaging'],
-            "city": request.form['city'],
-            "insert_datetime": str(datetime.datetime.now())
+            "environmental_commitment": request.form['environmental_commitment'],
+            "operations": {
+                "delivery": request.form['delivery'],
+                "pickup": request.form['pickup']
+            },
+            "calculated_eco_score": calculate_score(request.form),
+            "insert_datetime": str(datetime.datetime.now()),
+            "update_datetime": str(datetime.datetime.now())
         }
 
         post_doc(document)
@@ -71,7 +78,7 @@ def update():
 @app.route('/delete')
 def delete():
     selected_document_id = request.values['_id']
-    # selected_document = json.loads(selected_document)
+
     flash('Deleted: ' + selected_document_id)
 
     delete_doc(selected_document_id)

@@ -2,7 +2,6 @@ from app import app
 from ibmcloudant.cloudant_v1 import CloudantV1
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 
-import datetime
 import json
 
 with open('./secrets.json') as data_file:
@@ -11,7 +10,7 @@ with open('./secrets.json') as data_file:
 CLOUDANT_URL = cloudant_creds['url']
 CLOUDANT_APIKEY = cloudant_creds['apikey']
 CLOUDANT_USERNAME = cloudant_creds['username']
-DB_NAME = "eco-db"
+DB_NAME = "dev-aw" # eco-db
 
 app.config['CLOUDANT_URL'] = cloudant_creds['url']
 
