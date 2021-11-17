@@ -9,6 +9,8 @@
         "pickup": "n",
         "dine_in": "y",
         "dispose_practices": "recycle",
+        "electricity": "renewable",
+        "water": "none",
         "website_link": "www.example.com"
       },
       "consumer_ratings": {

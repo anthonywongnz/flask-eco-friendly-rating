@@ -1,0 +1,121 @@
+<!-- <div class="form-group">
+    <label>Store Name:</label>
+     <input type="hidden"  name="id" value="{{store._id}}">
+     <input type="hidden"  name="rev" value="{{store._rev}}">
+    <input type="text" class="form-control" name="name" value="{{store.name}}">
+</div>
+<div class="form-group">
+    <label>Category:</label>
+    <input type="text" class="form-control" name="category" value="{{store.category}}">
+</div>
+<div class="form-group">
+    <label>Environmental Commitment:</label>
+    <input type="text" class="form-control" name="environmental_commitment" value="{{store.environmental_commitment}}">
+</div>
+<div class="form-group">
+   <label>Delivery:</label>
+   <input type="text" class="form-control" name="delivery" value="{{store.operations.delivery}}">
+</div>
+<div class="form-group">
+   <label>Pickup:</label>
+   <input type="text" class="form-control" name="pickup" value="{{store.operations.pickup}}">
+</div>
+ <div class="form-group">
+    <button class="btn btn-primary" type="submit">Update</button>
+</div> -->
+
+
+
+<div class="form-group row">
+    <label for="name" class="col-4 col-form-label">Business Name</label> 
+    <div class="col-8">
+       <input type="hidden"  name="id" value="{{store._id}}">
+       <input type="hidden"  name="rev" value="{{store._rev}}">
+       <input id="name" name="name" value={{store.name}} type="text" class="form-control">
+    </div>
+    </div>
+    <div class="form-group row">
+    <label for="category" class="col-4 col-form-label">Category</label> 
+    <div class="col-8">
+       <input id="category" name="category" type="text" class="form-control" aria-describedby="categoryHelpBlock"> 
+       <span id="categoryHelpBlock" class="form-text text-muted">For example: Cafe, Fast Food, Fine Dining</span>
+    </div>
+    </div>
+    <div class="form-group row">
+    <label for="environmental_commitment" class="col-4 col-form-label">Environmental Commitment</label> 
+    <div class="col-8">
+       <textarea id="environmental_commitment" name="environmental_commitment" cols="40" rows="3" class="form-control" aria-describedby="environmental_commitmentHelpBlock"></textarea> 
+       <span id="environmental_commitmentHelpBlock" class="form-text text-muted">Your commitment here will be displayed to consumers.</span>
+    </div>
+    </div>
+    <div class="form-group row">
+    <label class="col-4">Available Delivery Options</label> 
+    <div class="form-group row">
+       <label class="col-4">Delivery</label> 
+       <div class="col-8">
+         <div class="custom-control custom-checkbox custom-control-inline">
+           <input name="delivery" id="delivery_0" type="checkbox" class="custom-control-input" value="y"> 
+           <label for="delivery_0" class="custom-control-label"></label>
+         </div>
+       </div>
+     </div>
+     <div class="form-group row">
+       <label class="col-4">Pickup</label> 
+       <div class="col-8">
+         <div class="custom-control custom-checkbox custom-control-inline">
+           <input name="pickup" id="pickup_0" type="checkbox" class="custom-control-input" value="y"> 
+           <label for="pickup_0" class="custom-control-label"></label>
+         </div>
+       </div>
+     </div>
+     <div class="form-group row">
+       <label class="col-4">Dine in</label> 
+       <div class="col-8">
+         <div class="custom-control custom-checkbox custom-control-inline">
+           <input name="dinein" id="dinein_0" type="checkbox" class="custom-control-input" value="y"> 
+           <label for="dinein_0" class="custom-control-label"></label>
+         </div>
+       </div>
+     </div>
+    </div>
+    <div class="form-group row">
+    <label for="dispose_practices" class="col-4 col-form-label">Where does most of your waste go?</label> 
+    <div class="col-8">
+       <select id="dispose_practices" name="dispose_practices" class="custom-select">
+          <option value="landfill">Landfill</option>
+          <option value="compost">Compost</option>
+          <option value="recycle">Recycled</option>
+       </select>
+    </div>
+    </div>
+    <div class="form-group row">
+       <label for="electricity" class="col-4 col-form-label">What is your electricity source?</label> 
+       <div class="col-8">
+         <select id="electricity" name="electricity" class="custom-select">
+           <option value="renewable">Renewable energy sources</option>
+           <option value="hybrid">Mix of both renewable and non-renewable sources</option>
+           <option value="none">Non-renewable source</option>
+         </select>
+       </div>
+     </div>
+     <div class="form-group row">
+       <label for="water" class="col-4 col-form-label">Are your water sources using water-saving devices/technology?</label> 
+       <div class="col-8">
+         <select id="water" name="water" class="custom-select">
+           <option value="most">All/Mostly</option>
+           <option value="some">Some</option>
+           <option value="none">None</option>
+         </select>
+       </div>
+     </div>
+    <div class="form-group row">
+    <label for="website" class="col-4 col-form-label">Link to your website</label> 
+    <div class="col-8">
+       <input id="website" name="website" placeholder="https://www.example.com" type="text" class="form-control">
+    </div>
+    </div> 
+    <div class="form-group row">
+    <div class="offset-4 col-8">
+        <button class="btn btn-primary" type="submit">Update</button>
+    </div>
+</div>

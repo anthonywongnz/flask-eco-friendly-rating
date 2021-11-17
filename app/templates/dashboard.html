@@ -18,7 +18,7 @@
 {% endwith %}
 
 
-<h1>Blah blah blah</h1>
+<h1>My Restaurants</h1>
 
 <table class="table table-light">
     <tr>
@@ -56,31 +56,7 @@
                 </div>
                 <div class="modal-body">
                    <form action="{{url_for('update')}}" method="POST">
-                      <div class="form-group">
-                         <label>Store Name:</label>
-                          <input type="hidden"  name="id" value="{{store._id}}">
-                          <input type="hidden"  name="rev" value="{{store._rev}}">
-                         <input type="text" class="form-control" name="name" value="{{store.name}}">
-                      </div>
-                      <div class="form-group">
-                         <label>Category:</label>
-                         <input type="text" class="form-control" name="category" value="{{store.category}}">
-                      </div>
-                      <div class="form-group">
-                         <label>Environmental Commitment:</label>
-                         <input type="text" class="form-control" name="environmental_commitment" value="{{store.environmental_commitment}}">
-                      </div>
-                      <div class="form-group">
-                        <label>Delivery:</label>
-                        <input type="text" class="form-control" name="delivery" value="{{store.operations.delivery}}">
-                     </div>
-                     <div class="form-group">
-                        <label>Pickup:</label>
-                        <input type="text" class="form-control" name="pickup" value="{{store.operations.pickup}}">
-                     </div>
-                      <div class="form-group">
-                         <button class="btn btn-primary" type="submit">Update</button>
-                      </div>
+                      {% include 'business-form-update.html' %}
                    </form>
                 </div>
                 <div class="modal-footer">
@@ -93,40 +69,18 @@
     {% endfor %}
 </table>
 
-<a href="#myModal" class="btn btn-lg btn-primary" data-bs-toggle="modal">Add New Restaurant...</a>
+<a href="#myModal" class="btn btn-lg btn-primary" data-bs-toggle="modal">Add Your Restaurant</a>
 
 <div id="mymodal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
      <div class="modal-content">
         <div class="modal-header">
-           <h4 class="modal-title">Add Restaurant</h4>
+           <h4 class="modal-title">Restaurant Sign Up</h4>
         </div>
         <div class="modal-body">
-           <form action="{{url_for('insert')}}" method="POST">
-               <div class="form-group">
-                 <label>Store Name:</label>
-                 <input type="text" class="form-control" name="name" required="1">
-               </div>
-               <div class="form-group">
-                 <label>Category:</label>
-                 <input type="text" class="form-control" name="category" required="1">
-               </div>
-               <div class="form-group">
-                  <label>Environmental Commitment:</label>
-                  <input type="text" class="form-control" name="environmental_commitment" required="1">
-               </div>
-               <div class="form-group">
-                 <label>Delivery:</label>
-                 <input type="text" class="form-control" name="delivery" required="1">
-               </div>
-               <div>
-                 <label>Pickup:</label>
-                 <input type="text" class="form-control" name="pickup" required="1">
-               </div>
-               <div class="form-group">
-                 <button class="btn btn-primary" type="submit">Add Restaurant</button>
-               </div>
-           </form>
+            <form action="{{url_for('insert')}}" method="POST">
+               {% include 'business-form.html' %}
+            </form>
         </div>
         <div class="modal-footer">
            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

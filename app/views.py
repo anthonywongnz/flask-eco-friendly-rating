@@ -28,14 +28,33 @@ def about():
 @app.route('/insert', methods = ['POST'])
 def insert():
     if request.method == 'POST':
+
+        # TO DO: FIX CHECKBOX
+        delivery = request.form.get('delivery', 'n')
+        if delivery == 'delivery':
+            delivery = 'y'
+
+        pickup = request.form.get('pickup', 'n')
+        if pickup == 'pickup':
+            pickup = 'y'
+
+        dine_in = request.form.get('dine_in', 'n')
+        if dine_in == 'dinein':
+            dine_in = 'y'
+
         document = {
             "name" : request.form['name'],
             "category": request.form['category'],
             "environmental_commitment" : request.form['environmental_commitment'],
             "operations" : 
                 {
-                    "delivery": request.form['delivery'],
-                    "pickup": request.form['pickup']
+                    "delivery": delivery,
+                    "pickup": pickup,
+                    "dine_in": dine_in,
+                    "dispose_practices": request.form['dispose_practices'],
+                    "electricity": request.form['electricity'],
+                    "water": request.form['water'],
+                    "website_link": request.form['website']
                 }
             ,
             "calculated_eco_score": calculate_score(request.form),
