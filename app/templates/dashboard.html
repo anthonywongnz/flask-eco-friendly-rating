@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+{% include "header.html" %}
+
+
+{% block body %}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+
+<h1>Blah blah blah</h1>
+
+<table class="table table-light">
+    <tr>
+        <!-- <th>id</th> -->
+        <!-- <th>rev</th> -->
+        <th>Store Name</th>
+        <th>Category</th>
+        <th>Packaging</th>
+        <th>City</th>
+        <th>Sussit Eco Rating</th>
+        <th>Action</th>
+    </tr>
+    {%for store in all_stores%}
+        <tr>
+            <!-- <td>{{store['_id']}}</td> -->
+            <!-- <td>{{store['_rev']}}</td> -->
+            <td>{{store['name']}}</td>
+            <td>{{store['category']}}</td>
+            <td>{{store['packaging']}}</td>
+            <td>{{store['city']}}</td>
+            <td>0/100</td>
+            <td>
+                <a href="#modaledit{{store._id}}" class="btn btn-primary btn-xs" data-bs-toggle="modal">Edit</a>
+                <a href="./delete?_id={{ store._id }}"><button type="submit" class="btn btn-primary btn-xs" onclick="return confirm('Are You Sure To Delete ?')">Delete</button></a>
+            </td>
+        </tr>
+
+        <div id="modaledit{{store._id}}" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+             <div class="modal-content">
+                <div class="modal-header">
+                   <h4 class="modal-title">Update Information</h4>
+                </div>
+                <div class="modal-body">
+                   <form action="{{url_for('update')}}" method="POST">
+                      <div class="form-group">
+                         <label>Name:</label>
+                          <input type="hidden"  name="id" value="{{store._id}}">
+                          <input type="hidden"  name="rev" value="{{store._rev}}">
+                         <input type="text" class="form-control" name="name" value="{{store.name}}">
+                      </div>
+                      <div class="form-group">
+                         <label>Category:</label>
+                         <input type="text" class="form-control" name="category" value="{{store.category}}">
+                      </div>
+                      <div class="form-group">
+                         <label>Pacakging:</label>
+                         <input type="text" class="form-control" name="packaging" value="{{store.packaging}}">
+                      </div>
+                      <div class="form-group">
+                        <label>City:</label>
+                        <input type="text" class="form-control" name="city" value="{{store.city}}">
+                     </div>
+                      <div class="form-group">
+                         <button class="btn btn-primary" type="submit">Update</button>
+                      </div>
+                   </form>
+                </div>
+                <div class="modal-footer">
+                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+             </div>
+          </div>
+       </div>
+
+    {% endfor %}
+</table>
+
+<a href="#myModal" class="btn btn-lg btn-primary" data-bs-toggle="modal">Add new document</a>
+
+<div id="mymodal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+     <div class="modal-content">
+        <div class="modal-header">
+           <h4 class="modal-title">Add Document</h4>
+        </div>
+        <div class="modal-body">
+           <form action="{{url_for('insert')}}" method="POST">
+              <div class="form-group">
+                 <label>Store Name:</label>
+                 <input type="text" class="form-control" name="name" required="1">
+              </div>
+               <div class="form-group">
+                 <label>Category:</label>
+                 <input type="text" class="form-control" name="category" required="1">
+              </div>
+               <div class="form-group">
+                 <label>Packaging:</label>
+                 <input type="text" class="form-control" name="packaging" required="1">
+              </div>
+              <div>
+                <label>City:</label>
+                <input type="text" class="form-control" name="city" required="1">
+             </div>
+              <div class="form-group">
+                 <button class="btn btn-primary" type="submit">Add Record</button>
+              </div>
+           </form>
+        </div>
+        <div class="modal-footer">
+           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+     </div>
+  </div>
+</div>
+
+{% endblock %}

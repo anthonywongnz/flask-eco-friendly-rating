@@ -1,6 +1,34 @@
-<nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="/">
-      <img src="../static/img/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="Sussit">
-      Sussit
-    </a>
+
+
+{% block nav %}
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
+  <div class="container">
+    <a href="/"><img src="../static/img/logo.svg" class="d-inline-block align-top" style="padding-right: 10px;" alt="Sussit"></a>
+    <a href="/" class="navbar-brand">Sussit</a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navmenu"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navmenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a href="/dashboard" class="nav-link">For Consumers</a>
+        </li>
+        <li class="nav-item">
+          <a href="/dashboard" class="nav-link">For Businesses</a>
+        </li>
+        <li class="nav-item">
+          <a href="/about" class="nav-link">About</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
+
+{% endblock %}

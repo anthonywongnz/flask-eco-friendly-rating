@@ -1,135 +1,139 @@
 {% extends "base.html" %}
 
-{% block title %} Home {% endblock %}
+{% block title %}Home{% endblock %}
 
 {% include "header.html" %}
 
 {% block body %}
 
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul class=flashes>
-    {% for message in messages %}
-      <li>{{ message }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
-
-<div class="jumbotron container mx-auto">
-  <h1 class="display-4">Helping you make better decisions</h1>
-  <p class="lead">We help you make eco-friendly decisions to something something something.</p>
-  <p class="lead">
-    <a class="btn btn-primary btn-lg" href="/about" role="button">Learn more</a>
-  </p>
-</div>
-
-<div class="container mx-auto">
-  <h1>Insert categories here</h1>
-</div>
-
-<table style="margin-left: auto; margin-right: auto;">
-    <tr>
-        <th>id</th>
-        <th>rev</th>
-        <th>Store Name</th>
-        <th>Category</th>
-        <th>Packaging</th>
-        <th>City</th>
-        <th>Action</th>
-    </tr>
-    {%for store in all_stores%}
-        <tr>
-            <td>{{store['_id']}}</td>
-            <td>{{store['_rev']}}</td>
-            <td>{{store['name']}}</td>
-            <td>{{store['category']}}</td>
-            <td>{{store['packaging']}}</td>
-            <td>{{store['city']}}</td>
-            <td>
-                <a href="#modaledit{{store._id}}" class="btn btn-primary btn-xs" data-bs-toggle="modal">Edit</a>
-                <a href="./delete?_id={{ store._id }}"><button type="submit" class="btn btn-primary btn-xs" onclick="return confirm('Are You Sure To Delete ?')">Delete</button></a>
-            </td>
-        </tr>
-
-        <div id="modaledit{{store._id}}" class="modal fade" role="dialog">
-          <div class="modal-dialog">
-             <div class="modal-content">
-                <div class="modal-header">
-                   <h4 class="modal-title">Update Information</h4>
-                </div>
-                <div class="modal-body">
-                   <form action="{{url_for('update')}}" method="POST">
-                      <div class="form-group">
-                         <label>Name:</label>
-                          <input type="hidden"  name="id" value="{{store._id}}">
-                          <input type="hidden"  name="rev" value="{{store._rev}}">
-                         <input type="text" class="form-control" name="name" value="{{store.name}}">
-                      </div>
-                      <div class="form-group">
-                         <label>Category:</label>
-                         <input type="text" class="form-control" name="category" value="{{store.category}}">
-                      </div>
-                      <div class="form-group">
-                         <label>Pacakging:</label>
-                         <input type="text" class="form-control" name="packaging" value="{{store.packaging}}">
-                      </div>
-                      <div class="form-group">
-                        <label>City:</label>
-                        <input type="text" class="form-control" name="city" value="{{store.city}}">
-                     </div>
-                      <div class="form-group">
-                         <button class="btn btn-primary" type="submit">Update</button>
-                      </div>
-                   </form>
-                </div>
-                <div class="modal-footer">
-                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-             </div>
+<section
+      class="bg-dark text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start"
+    >
+      <div class="container">
+        <div class="d-sm-flex align-items-center justify-content-between">
+          <div>
+            <h1>Helping you make <span class="text-success"> greener </span> decisions</h1>
+            <p class="lead my-4">
+              We help consumers like you make eco-friendly decisions to something something something.
+            </p>
+            <p class="lead">
+              <a class="btn btn-primary btn-lg" href="/about" role="button">Learn more</a>
+            </p>
           </div>
-       </div>
-
-    {% endfor %}
-</table>
-
-<a href="#myModal" class="btn btn-lg btn-primary" data-bs-toggle="modal">Add new document</a>
-
-<div id="mymodal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-     <div class="modal-content">
-        <div class="modal-header">
-           <h4 class="modal-title">Add Employee</h4>
+          <img
+            class="img-fluid w-30 d-none d-sm-block"
+            src="../static/img/char1.png"
+            alt=""
+          />
         </div>
-        <div class="modal-body">
-           <form action="{{url_for('insert')}}" method="POST">
-              <div class="form-group">
-                 <label>Store Name:</label>
-                 <input type="text" class="form-control" name="name" required="1">
+      </div>
+    </section>
+
+
+    <section class="p-5">
+      <div class="container">
+        <div class="row text-center g-4">
+          <div class="col-md">
+            <a href="/" style="text-decoration: none;"><div class="card bg-danger text-light">
+              <div class="card-body text-center">
+                <div class="h1 mb-3">
+                  <i class="bi bi-laptop"></i>
+                </div>
+                <h3 class="card-title mb-3">Fast Food</h3>
               </div>
-               <div class="form-group">
-                 <label>Category:</label>
-                 <input type="text" class="form-control" name="category" required="1">
+            </div></a>
+          </div>
+          <div class="col-md">
+            <a href="/" style="text-decoration: none;"><div class="card bg-danger text-light">
+              <div class="card-body text-center">
+                <div class="h1 mb-3">
+                  <i class="bi bi-person-square"></i>
+                </div>
+                <h3 class="card-title mb-3">Fine Dining</h3>
               </div>
-               <div class="form-group">
-                 <label>Packaging:</label>
-                 <input type="text" class="form-control" name="packaging" required="1">
+            </div></a>
+          </div>
+          <div class="col-md">
+            <a href="/" style="text-decoration: none;"><div class="card bg-danger text-light">
+              <div class="card-body text-center">
+                <div class="h1 mb-3">
+                  <i class="bi bi-people"></i>
+                </div>
+                <h3 class="card-title mb-3">Coffee</h3>
               </div>
-              <div>
-                <label>City:</label>
-                <input type="text" class="form-control" name="city" required="1">
-             </div>
-              <div class="form-group">
-                 <button class="btn btn-primary" type="submit">Add Record</button>
+            </div></a>
+          </div>
+
+          <div class="col-md">
+            <a href="/" style="text-decoration: none;"><div class="card bg-danger text-light">
+              <div class="card-body text-center">
+                <div class="h1 mb-3">
+                  <i class="bi bi-people"></i>
+                </div>
+                <h3 class="card-title mb-3">Asian</h3>
               </div>
-           </form>
+            </div></a>
+          </div>
         </div>
-        <div class="modal-footer">
-           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </section>
+
+
+    <section id="learn" class="p-5">
+      <div class="container">
+        <div class="row align-items-center justify-content-between">
+          <div class="col-md">
+            <img src="../static/img/char2.png" class="img-fluid" alt="" />
+          </div>
+          <div class="col-md p-5">
+            <h2>For Businesses</h2>
+            <p class="lead">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Similique deleniti possimus magnam corporis ratione facere!
+            </p>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque
+              reiciendis eius autem eveniet mollitia, at asperiores suscipit
+              quae similique laboriosam iste minus placeat odit velit quos,
+              nulla architecto amet voluptates?
+            </p>
+            <a href="#" class="btn btn-light mt-3">
+              <i class="bi bi-chevron-right"></i> Read More
+            </a>
+          </div>
         </div>
-     </div>
-  </div>
-</div>
+      </div>
+    </section>
+
+    <section id="learn" class="p-5 bg-dark text-light">
+      <div class="container">
+        <div class="row align-items-center justify-content-between">
+          <div class="col-md p-5">
+            <h2>For Consumers</h2>
+            <p class="lead">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Similique deleniti possimus magnam corporis ratione facere!
+            </p>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque
+              reiciendis eius autem eveniet mollitia, at asperiores suscipit
+              quae similique laboriosam iste minus placeat odit velit quos,
+              nulla architecto amet voluptates?
+            </p>
+            <a href="#" class="btn btn-light mt-3">
+              <i class="bi bi-chevron-right"></i> Read More
+            </a>
+          </div>
+          <div class="col-md">
+            <img src="../static/img/char3.png" class="img-fluid" alt="" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
 
 
 
