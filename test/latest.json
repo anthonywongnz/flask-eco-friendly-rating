@@ -14,6 +14,7 @@
         "website_link": "www.example.com"
       },
       "consumer_ratings": {
+        "count": 0,
         "family_friendly": "y",
         "pet_friendly": "y",
         "food_options": "Vegetarian",
@@ -27,28 +28,23 @@
       "update_datetime": "2021-11-17 23:51:14.823417"
     },
     {
-      "name": "Chops Cafe",
+      "_id": "38f22955b7d8e8db8bac7d071cba2daa",
+      "_rev": "1-51cda6fedeb2989b07587a21801eacef",
+      "name": "Starbucks",
       "category": "Cafe",
-      "environmental_commitment": "none",
+      "environmental_commitment": "We use paper straws.",
       "operations": {
         "delivery": "n",
-        "pickup": "n",
-        "dine_in": "y",
-        "dispose_practices": "recycle",
-        "website_link": "www.example.com"
-      },
-      "consumer_ratings": {
-        "family_friendly": "y",
-        "pet_friendly": "n",
-        "food_options": "Regular Meat",
-        "packaging": "Biodegradable Plastic",
-        "cutlery_takeaway": "Biodegradable Plastic",
-        "cutlery_instore": "Biodegradable Plastic",
-        "food_source": "Local"
+        "pickup": "y",
+        "dine_in": "n",
+        "dispose_practices": "compost",
+        "electricity": "hybrid",
+        "water": "some",
+        "website_link": "www.starbucks.com"
       },
       "calculated_eco_score": 0,
-      "insert_datetime": "2021-11-16 23:51:14.823417",
-      "update_datetime": "2021-11-17 23:51:14.823417"
+      "insert_datetime": "2021-11-18 22:17:23.860340",
+      "update_datetime": "2021-11-18 22:17:23.860354"
     }
   ]
 }

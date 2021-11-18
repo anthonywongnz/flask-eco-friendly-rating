@@ -1,31 +1,3 @@
-<!-- <div class="form-group">
-    <label>Store Name:</label>
-     <input type="hidden"  name="id" value="{{store._id}}">
-     <input type="hidden"  name="rev" value="{{store._rev}}">
-    <input type="text" class="form-control" name="name" value="{{store.name}}">
-</div>
-<div class="form-group">
-    <label>Category:</label>
-    <input type="text" class="form-control" name="category" value="{{store.category}}">
-</div>
-<div class="form-group">
-    <label>Environmental Commitment:</label>
-    <input type="text" class="form-control" name="environmental_commitment" value="{{store.environmental_commitment}}">
-</div>
-<div class="form-group">
-   <label>Delivery:</label>
-   <input type="text" class="form-control" name="delivery" value="{{store.operations.delivery}}">
-</div>
-<div class="form-group">
-   <label>Pickup:</label>
-   <input type="text" class="form-control" name="pickup" value="{{store.operations.pickup}}">
-</div>
- <div class="form-group">
-    <button class="btn btn-primary" type="submit">Update</button>
-</div> -->
-
-
-
 <div class="form-group row">
     <label for="name" class="col-4 col-form-label">Business Name</label> 
     <div class="col-8">
@@ -37,14 +9,14 @@
     <div class="form-group row">
     <label for="category" class="col-4 col-form-label">Category</label> 
     <div class="col-8">
-       <input id="category" name="category" type="text" class="form-control" aria-describedby="categoryHelpBlock"> 
+       <input id="category" name="category" value="{{store.category}}" type="text" class="form-control" aria-describedby="categoryHelpBlock"> 
        <span id="categoryHelpBlock" class="form-text text-muted">For example: Cafe, Fast Food, Fine Dining</span>
     </div>
     </div>
     <div class="form-group row">
     <label for="environmental_commitment" class="col-4 col-form-label">Environmental Commitment</label> 
     <div class="col-8">
-       <textarea id="environmental_commitment" name="environmental_commitment" cols="40" rows="3" class="form-control" aria-describedby="environmental_commitmentHelpBlock"></textarea> 
+       <textarea id="environmental_commitment" name="environmental_commitment" cols="40" rows="3" class="form-control" aria-describedby="environmental_commitmentHelpBlock">{{store.environmental_commitment}}</textarea> 
        <span id="environmental_commitmentHelpBlock" class="form-text text-muted">Your commitment here will be displayed to consumers.</span>
     </div>
     </div>
@@ -54,7 +26,7 @@
        <label class="col-4">Delivery</label> 
        <div class="col-8">
          <div class="custom-control custom-checkbox custom-control-inline">
-           <input name="delivery" id="delivery_0" type="checkbox" class="custom-control-input" value="y"> 
+           <input name="delivery" value="{{store.operations.delivery}}" id="delivery_0" type="checkbox" class="custom-control-input" value="y"> 
            <label for="delivery_0" class="custom-control-label"></label>
          </div>
        </div>
@@ -63,7 +35,7 @@
        <label class="col-4">Pickup</label> 
        <div class="col-8">
          <div class="custom-control custom-checkbox custom-control-inline">
-           <input name="pickup" id="pickup_0" type="checkbox" class="custom-control-input" value="y"> 
+           <input name="pickup" value="{{store.operations.pickup}}" id="pickup_0" type="checkbox" class="custom-control-input" value="y"> 
            <label for="pickup_0" class="custom-control-label"></label>
          </div>
        </div>
@@ -72,7 +44,7 @@
        <label class="col-4">Dine in</label> 
        <div class="col-8">
          <div class="custom-control custom-checkbox custom-control-inline">
-           <input name="dinein" id="dinein_0" type="checkbox" class="custom-control-input" value="y"> 
+           <input name="dinein" value="{{store.operations.dine_in}}" id="dinein_0" type="checkbox" class="custom-control-input" value="y"> 
            <label for="dinein_0" class="custom-control-label"></label>
          </div>
        </div>
@@ -111,7 +83,7 @@
     <div class="form-group row">
     <label for="website" class="col-4 col-form-label">Link to your website</label> 
     <div class="col-8">
-       <input id="website" name="website" placeholder="https://www.example.com" type="text" class="form-control">
+       <input id="website" name="website" value="{{store.operations.website_link}}" placeholder="https://www.example.com" type="text" class="form-control">
     </div>
     </div> 
     <div class="form-group row">

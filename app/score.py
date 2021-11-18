@@ -7,31 +7,21 @@ def calculate_score(store):
             "plant_based_meat": 1,
             "meat": 0
         },
-        "packaging": {
+        "takeaway_packaging": {
             "weight": 3,
             "compostable": 2,
             "plastic": -1,
             "biodegradable": 1,
-            "reusable cup discounts": 2,
-            "no plastic bags": 2,
+            "na": 0
         },
-        "cutlery_takeaway": {
+        "takeaway_cutlery": {
             "weight": 2,
             "compostable": 2,
             "plastic": -1,
             "biodegradable": 1,
-            "reusable cup discounts": 2,
-            "no plastic straws": 2,
+            "na": 0
         },
-        "cutlery_in_store": {
-            "weight": 2,
-            "compostable": 2,
-            "plastic": -1,
-            "biodegradable": 1,
-            "reusable cup discounts": 2,
-            "no plastic straws": 2,
-        },
-        "food_source_scores": {
+        "food_source": {
             "weight": 7,
             "local": 1,
             "not_local": -1
@@ -59,38 +49,93 @@ def calculate_score(store):
     total_score = 0
 
     # Score for disposing waste
-    if store.get('dispose_practices') == 'recycle':
+    if store['operations']['dispose_practices'] == 'recycle':
         total_score += scoring_matrix['dispose_practices']['weight'] * \
             scoring_matrix['dispose_practices']['recycle']
-    elif store.get('dispose_practices') == 'landfill':
+    elif store['operations']['dispose_practices'] == 'landfill':
         total_score += scoring_matrix['dispose_practices']['weight'] * \
             scoring_matrix['dispose_practices']['landfill']
-    elif store.get('dispose_practices') == 'compost':
+    elif store['operations']['dispose_practices'] == 'compost':
         total_score += scoring_matrix['dispose_practices']['weight'] * \
             scoring_matrix['dispose_practices']['compost']
 
 
     # Score for electricity
-    if store.get('electricity') == 'renewable':
+    if store['operations']['electricity'] == 'renewable':
         total_score += scoring_matrix['electricity']['weight'] * \
             scoring_matrix['electricity']['renewable']
-    elif store.get('electricity') == 'hybrid':
+    elif store['operations']['electricity'] == 'hybrid':
         total_score += scoring_matrix['electricity']['weight'] * \
             scoring_matrix['electricity']['hybrid']
-    elif store.get('electricity') == 'none':
+    elif store['operations']['electricity'] == 'none':
         total_score += scoring_matrix['electricity']['weight'] * \
             scoring_matrix['electricity']['none']
 
 
     # Score for water
-    if store.get('water') == 'most':
-        total_score += scoring_matrix['water']['weight'] * \
+    if store['operations']['water'] == 'most':
+        total_score + scoring_matrix['water']['weight'] * \
             scoring_matrix['water']['most']
-    elif store.get('water') == 'some':
+    elif store['operations']['water'] == 'some':
         total_score += scoring_matrix['water']['weight'] * \
             scoring_matrix['water']['some']
-    elif store.get('water') == 'none':
+    elif store['operations']['water'] == 'none':
         total_score += scoring_matrix['water']['weight'] * \
             scoring_matrix['water']['none']
+
+
+    for rating in store['consumer_ratings']:
+        print(rating)
+        # Score for food options
+        if rating['vegetarian_vegan'] == 'y':
+            total_score + scoring_matrix['food_options']['weight'] * \
+                scoring_matrix['food_options']['vegetarian_vegan']
+    
+        if rating['plant_based_meat'] == 'y':
+                total_score += scoring_matrix['food_options']['weight'] * \
+                    scoring_matrix['food_options']['plant_based_meat']
+
+        if rating['meat'] == 'y':
+                total_score += scoring_matrix['food_options']['weight'] * \
+                    scoring_matrix['food_options']['meat']
+    
+        # Score for food source
+        if rating['food_source'] == 'local':
+            total_score + scoring_matrix['food_source']['weight'] * \
+                scoring_matrix['food_source']['local']
+        elif rating['food_source'] == 'not_local':
+            total_score + scoring_matrix['food_source']['weight'] * \
+                scoring_matrix['food_source']['not_local']
+
+
+        # Score for takeaway packaging
+        if rating['takeaway_packaging'] == 'na':
+            total_score + scoring_matrix['food_source']['weight'] * \
+                scoring_matrix['takeaway_packaging']['na']
+        elif rating['takeaway_packaging'] == 'compostable':
+            total_score + scoring_matrix['takeaway_packaging']['weight'] * \
+                scoring_matrix['takeaway_packaging']['compostable']
+        elif rating['takeaway_packaging'] == 'plastic':
+            total_score + scoring_matrix['takeaway_packaging']['weight'] * \
+                scoring_matrix['takeaway_packaging']['plastic']
+        elif rating['takeaway_packaging'] == 'biodegradable':
+            total_score + scoring_matrix['takeaway_packaging']['weight'] * \
+                scoring_matrix['takeaway_packaging']['biodegradable']
+
+
+        # Score for takeaway cutlery
+        if rating['takeaway_cutlery'] == 'na':
+            total_score + scoring_matrix['food_source']['weight'] * \
+                scoring_matrix['takeaway_cutlery']['na']
+        elif rating['takeaway_cutlery'] == 'compostable':
+            total_score + scoring_matrix['takeaway_cutlery']['weight'] * \
+                scoring_matrix['takeaway_cutlery']['compostable']
+        elif rating['takeaway_cutlery'] == 'plastic':
+            total_score + scoring_matrix['takeaway_cutlery']['weight'] * \
+                scoring_matrix['takeaway_cutlery']['plastic']
+        elif rating['takeaway_cutlery'] == 'biodegradable':
+            total_score + scoring_matrix['takeaway_cutlery']['weight'] * \
+                scoring_matrix['takeaway_cutlery']['biodegradable']
+    
 
     return total_score

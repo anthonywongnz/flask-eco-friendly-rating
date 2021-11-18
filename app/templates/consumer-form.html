@@ -1,0 +1,101 @@
+<form>
+    <div class="form-group row">
+      <label class="col-4">Family Friendly</label> 
+      <div class="col-8">
+        <div class="custom-control custom-checkbox custom-control-inline">
+          <input type="hidden"  name="id" value="{{store._id}}">
+          <input type="hidden"  name="rev" value="{{store._rev}}">
+          <input type="hidden"  name="name" value="{{store.name}}">
+          <input type="hidden"  name="category" value="{{store.category}}">
+          <input type="hidden"  name="environmental_commitment" value="{{store.environmental_commitment}}">
+          <input type="hidden"  name="delivery" value="{{store.operations.delivery}}">
+          <input type="hidden"  name="pickup" value="{{store.operations.pickup}}">
+          <input type="hidden"  name="dine_in" value="{{store.operations.dine_in}}">
+          <input type="hidden"  name="dispose_practices" value="{{store.operations.dispose_practices}}">
+          <input type="hidden"  name="electricity" value="{{store.operations.electricity}}">
+          <input type="hidden"  name="water" value="{{store.operations.water}}">
+          <input type="hidden"  name="website_link" value="{{store.operations.website_link}}">
+
+          <input name="family_friendly" id="family_friendly_0" type="checkbox" class="custom-control-input" value="y"> 
+          <label for="family_friendly_0" class="custom-control-label"></label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-4">Pet Friendly</label> 
+      <div class="col-8">
+        <div class="custom-control custom-checkbox custom-control-inline">
+          <input name="pet_friendly" id="pet_friendly_0" type="checkbox" class="custom-control-input" value="y"> 
+          <label for="pet_friendly_0" class="custom-control-label"></label>
+        </div>
+      </div>
+    </div>
+    <br>
+    <p>Available Food Options:</p> 
+    <div class="form-group row">
+      <label class="col-4">Vegetarian or Vegan</label> 
+      <div class="col-8">
+        <div class="custom-control custom-checkbox custom-control-inline">
+          <input name="vegetarian_vegan" id="vegetarian_vegan_0" type="checkbox" class="custom-control-input" value="y"> 
+          <label for="vegetarian_vegan_0" class="custom-control-label"></label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-4">Plant-based Meat</label> 
+      <div class="col-8">
+        <div class="custom-control custom-checkbox custom-control-inline">
+          <input name="plant_based_meat" id="plant_based_meat_0" type="checkbox" class="custom-control-input" value="y"> 
+          <label for="plant_based_meat_0" class="custom-control-label"></label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-4">Meat</label> 
+      <div class="col-8">
+        <div class="custom-control custom-checkbox custom-control-inline">
+          <input name="meat" id="meat_0" type="checkbox" class="custom-control-input" value="y"> 
+          <label for="meat_0" class="custom-control-label"></label>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="form-group row">
+      <label for="food_source" class="col-4 col-form-label">Food Source</label> 
+      <div class="col-8">
+        <select id="food_source" name="food_source" class="custom-select">
+          <option value="local">Local</option>
+          <option value="not_local">Not Local</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="takeaway_packaging" class="col-4 col-form-label">Takeaway Packaging</label> 
+      <div class="col-8">
+        <select id="takeaway_packaging" name="takeaway_packaging" aria-describedby="takeaway_packagingHelpBlock" class="custom-select">
+          <option value="na">N/A</option>
+          <option value="compostable">Compostable</option>
+          <option value="plastic">Plastic</option>
+          <option value="biodegradable">Biodegradable</option>
+        </select> 
+        <span id="takeaway_packagingHelpBlock" class="form-text text-muted">Select majority option</span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="takeaway_cutlery" class="col-4 col-form-label">Takeaway Cutlery</label> 
+      <div class="col-8">
+        <select id="takeaway_cutlery" name="takeaway_cutlery" aria-describedby="takeaway_cutleryHelpBlock" class="custom-select">
+          <option value="na">N/A</option>
+          <option value="compostable">Compostable</option>
+          <option value="plastic">Plastic</option>
+          <option value="biodegradable">Biodegradable</option>
+        </select> 
+        <span id="takeaway_cutleryHelpBlock" class="form-text text-muted">Select majority option</span>
+      </div>
+    </div> 
+    <div class="form-group row">
+      <div class="offset-4 col-8">
+        <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>

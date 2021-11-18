@@ -18,7 +18,7 @@
 {% endwith %}
 
 
-<h1>My Restaurants</h1>
+<h1>Browse Restaurants</h1>
 
 <table class="table table-light">
     <tr>
@@ -31,7 +31,8 @@
         <th>Pickup</th>
         <th>Dine In</th>
         <th>Link</th>
-        <th>Action</th>
+        <th>Sussit Rating</th>
+        <th></th>
     </tr>
     {%for store in all_stores%}
         <tr>
@@ -44,21 +45,20 @@
             <td>{{store.operations.pickup}}</td>
             <td>{{store.operations.dine_in}}</td>
             <td><a href="#">{{store.operations.website_link}}</a></td>
-            <td>
-                <a href="#modaledit{{store._id}}" class="btn btn-primary btn-xs" data-bs-toggle="modal">Edit</a>
-                <a href="./delete?_id={{ store._id }}"><button type="submit" class="btn btn-primary btn-xs" onclick="return confirm('Are You Sure To Delete ?')">Delete</button></a>
-            </td>
+            <td class="text-success">{{store.calculated_eco_score}}</td>
+            <td><a href="#modaledit{{store._id}}" class="btn btn-success btn-xs" data-bs-toggle="modal">Add Your Rating</a></td>
+            
         </tr>
 
         <div id="modaledit{{store._id}}" class="modal fade" role="dialog">
           <div class="modal-dialog modal-lg">
              <div class="modal-content">
                 <div class="modal-header">
-                   <h4 class="modal-title">Update Information</h4>
+                   <h4 class="modal-title">Add Rating</h4>
                 </div>
                 <div class="modal-body">
-                   <form action="{{url_for('update')}}" method="POST">
-                      {% include 'business-form-update.html' %}
+                   <form action="{{url_for('add_rating')}}" method="POST">
+                      {% include 'consumer-form.html' %}
                    </form>
                 </div>
                 <div class="modal-footer">
@@ -70,25 +70,5 @@
 
     {% endfor %}
 </table>
-
-<a href="#myModal" class="btn btn-lg btn-primary" data-bs-toggle="modal">Add Your Restaurant</a>
-
-<div id="mymodal" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-lg">
-     <div class="modal-content">
-        <div class="modal-header">
-           <h4 class="modal-title">Restaurant Sign Up</h4>
-        </div>
-        <div class="modal-body">
-            <form action="{{url_for('insert')}}" method="POST">
-               {% include 'business-form.html' %}
-            </form>
-        </div>
-        <div class="modal-footer">
-           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-     </div>
-  </div>
-</div>
 
 {% endblock %}
