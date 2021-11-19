@@ -1,7 +1,7 @@
 from app import app
 from flask import render_template, request, flash, redirect, url_for
 from app.db import get_docs, post_doc, delete_doc
-from app.score import calculate_score
+from app.score import calculate_score, get_vote_count
 
 import datetime
 import ast
@@ -17,6 +17,7 @@ def browse():
     for id in all_docs:
         store = id['doc']
         store['calculated_eco_score'] = calculate_score(store)
+        store['vote_count'] = get_vote_count(store)
         all_stores.append(store)
 
     return render_template('browse.html', all_stores = all_stores)
@@ -75,13 +76,11 @@ def add_rating():
 
         previous_consumer_ratings = request.form.get('prev_consumer_ratings', '{}')
 
-        if previous_consumer_ratings != '{}': # inserted first time
+        if previous_consumer_ratings != '{}': # not inserted first time
             previous_consumer_ratings = request.form['prev_consumer_ratings'][1:-1]
+            previous_consumer_ratings = ast.literal_eval(previous_consumer_ratings) # to dictionary
         else:
-            previous_consumer_ratings = ''
-
-        
-        previous_consumer_ratings = ast.literal_eval(previous_consumer_ratings)
+            previous_consumer_ratings = ''        
 
         document = {
             "_id" : request.form['id'],
@@ -111,16 +110,17 @@ def add_rating():
                     "takeaway_cutlery": request.form['takeaway_cutlery']
                 }
             ],
+            "vote_count": 0,
             "calculated_eco_score": 0,
             "insert_datetime": str(datetime.datetime.now()),
             "update_datetime": str(datetime.datetime.now())
         }
 
         # if previous document has multiple ratings
-        if (type(previous_consumer_ratings) is tuple):
+        if ((type(previous_consumer_ratings) is tuple) and previous_consumer_ratings != '{}'):
             for i in previous_consumer_ratings:
                 document['consumer_ratings'].append(i)
-        else:
+        elif ((type(previous_consumer_ratings) is dict) and previous_consumer_ratings != '{}'):
             document['consumer_ratings'].append(previous_consumer_ratings)
 
         post_doc(document)
@@ -161,6 +161,7 @@ def insert():
                     "website_link": request.form['website']
                 },
             "consumer_ratings": {},
+            "vote_count": 0,
             "calculated_eco_score": 0,
             "insert_datetime": str(datetime.datetime.now()),
             "update_datetime": str(datetime.datetime.now())
@@ -204,6 +205,8 @@ def update():
                 "water": request.form['water'],
                 "website_link": request.form['website']
             },
+            "consumer_ratings": {},
+            "vote_count": 0,
             "calculated_eco_score": 0,
             "update_datetime": str(datetime.datetime.now())
         }
