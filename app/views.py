@@ -4,6 +4,7 @@ from app.db import get_docs, post_doc, delete_doc
 from app.score import calculate_score
 
 import datetime
+import ast
 
 @app.route('/')
 def index():      
@@ -72,6 +73,15 @@ def add_rating():
         if pickup == 'pet_friendly':
             pickup = 'y'
 
+        previous_consumer_ratings = request.form.get('prev_consumer_ratings', '{}')
+
+        if previous_consumer_ratings != '{}': # inserted first time
+            previous_consumer_ratings = request.form['prev_consumer_ratings'][1:-1]
+        else:
+            previous_consumer_ratings = ''
+
+        
+        previous_consumer_ratings = ast.literal_eval(previous_consumer_ratings)
 
         document = {
             "_id" : request.form['id'],
@@ -89,7 +99,7 @@ def add_rating():
                     "water": request.form['water'],
                     "website_link": request.form['website_link']
                 },
-            "consumer_ratings": [
+            "consumer_ratings": [ 
                 {
                     "family_friendly": family_friendly,
                     "pet_friendly": pet_friendly,
@@ -105,6 +115,13 @@ def add_rating():
             "insert_datetime": str(datetime.datetime.now()),
             "update_datetime": str(datetime.datetime.now())
         }
+
+        # if previous document has multiple ratings
+        if (type(previous_consumer_ratings) is tuple):
+            for i in previous_consumer_ratings:
+                document['consumer_ratings'].append(i)
+        else:
+            document['consumer_ratings'].append(previous_consumer_ratings)
 
         post_doc(document)
  
@@ -143,7 +160,7 @@ def insert():
                     "water": request.form['water'],
                     "website_link": request.form['website']
                 },
-            "consumer_ratings": [],
+            "consumer_ratings": {},
             "calculated_eco_score": 0,
             "insert_datetime": str(datetime.datetime.now()),
             "update_datetime": str(datetime.datetime.now())
@@ -153,7 +170,7 @@ def insert():
  
         flash("Created new record successfully")
  
-        return redirect(url_for('results'))
+        return redirect(url_for('dashboard'))
 
 
 @app.route('/update', methods = ['POST'])
