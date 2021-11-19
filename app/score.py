@@ -84,8 +84,10 @@ def calculate_score(store):
             scoring_matrix['water']['none']
 
 
+    vote_count = len(store['consumer_ratings'])
+
     for rating in store['consumer_ratings']:
-        print(rating)
+        
         # Score for food options
         if rating['vegetarian_vegan'] == 'y':
             total_score + scoring_matrix['food_options']['weight'] * \
@@ -137,5 +139,4 @@ def calculate_score(store):
             total_score + scoring_matrix['takeaway_cutlery']['weight'] * \
                 scoring_matrix['takeaway_cutlery']['biodegradable']
     
-
-    return total_score
+    return round(total_score / vote_count, 2)
