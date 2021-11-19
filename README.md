@@ -10,6 +10,8 @@ Sussit is a tool for consumers to check the sustainability rating of businesses.
 https://www.youtube.com/watch?v=oiXZkUUXymE
 
 ## Description
+![Sussit Architecture](sussit_architecture.png "Sussit Architecture")
+
 [“Food companies have not been innovators in sustainability, or any realm for that matter, unless they have a gun held to their heads.” - Forbes](https://www.forbes.com/sites/hankcardello/2020/10/20/food-industry-is-a-no-show-in-new-sustainability-study/?sh=501454d91c57)
 
 In a world learning to live with COVID-19, the food industry is struggling with lockdowns, restrictions and needing to reframe how their business operates. This is a great opportunity for businesses to reframe [“their strategic agenda not to return to business as it once was, but as a new platform from which to create and protect value” – Barry Perkins (EY Global Strategy and Transactions Lead Analyst) and Falco Weidemeyer (EMEIA EY-Parthenon Leader; EMEIA Reshaping Results Leader and Member of the Global Turnaround and Restructuring Strategy Leadership Team)](https://www.ey.com/en_gl/ceo/the-ceo-imperative-rebound-to-more-sustainable-growth)
