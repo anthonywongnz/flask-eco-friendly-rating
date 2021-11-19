@@ -3,6 +3,8 @@ For Call for Code ESG Challenge - EY-IBM Alliance
 
 Sussit is a tool for consumers to check the sustainability rating of businesses.
 
+[Visit the website](http://flask-eco-friendly-rating-dev-aw.workshop-team-four-bb0dafd08526894d1a8ae848e8bd8099-0000.eu-de.containers.appdomain.cloud/)
+
 ## Promo Video
 
 https://www.youtube.com/watch?v=oiXZkUUXymE
